@@ -1,4 +1,4 @@
-package com.zjun.config;
+package zjun2.top.config;
 
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
@@ -12,9 +12,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisOperations;
 
-import com.zjun.cache.RedissonSpringLocalCachedCacheManager;
-
 import lombok.extern.slf4j.Slf4j;
+import zjun2.top.cache.RedissonSpringLocalCachedCacheManager;
 
 @Slf4j
 @Configuration

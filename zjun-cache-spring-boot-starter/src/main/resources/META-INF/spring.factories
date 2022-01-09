@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.zjun.config.ZjunCacheAutoConfiguration
+zjun2.top.config.ZjunCacheAutoConfiguration
