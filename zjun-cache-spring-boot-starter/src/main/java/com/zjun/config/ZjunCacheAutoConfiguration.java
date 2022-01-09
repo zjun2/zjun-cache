@@ -29,6 +29,8 @@ public class ZjunCacheAutoConfiguration {
 	@Bean
 	@ConditionalOnMissingBean(CacheManager.class)
 	public CacheManager cacheManager(RedissonClient redissonClient) {
+		log.debug("源码地址: https://gitee.com/zhouJ/zjun-cache");
+		log.debug("如需配置命名空间请在resources中添加zjun-cache-config.yaml文件");
 		log.debug("创建RedissonSpringLocalCachedCacheManager，加载配置文件: {}", DEFFAUT_CONFIGLOCATION);
 		return new RedissonSpringLocalCachedCacheManager(redissonClient, DEFFAUT_CONFIGLOCATION);
 	}
