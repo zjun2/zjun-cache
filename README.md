@@ -22,9 +22,9 @@ LRU的优点和局限性 ：LRU可以很好的应对突发流量的情况，因�
 
 ```xml
 <dependency>
-    <groupId>io.github.zjun02</groupId>
-    <artifactId>zjun-cache-spring-boot-starter</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+  <groupId>io.github.zjun02</groupId>
+  <artifactId>zjun-cache-spring-boot-starter</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
 </dependency>
 ```
 
