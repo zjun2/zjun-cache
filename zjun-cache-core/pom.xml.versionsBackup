@@ -5,13 +5,14 @@
 	<parent>
 		<groupId>io.github.zjun02</groupId>
 		<artifactId>zjun-cache</artifactId>
-		<version>0.0.1-release</version>
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>zjun-cache-spring-boot-starter</artifactId>
+	<artifactId>zjun-cache-core</artifactId>
+
 	<dependencies>
 		<dependency>
-			<groupId>io.github.zjun02</groupId>
-			<artifactId>zjun-cache-core</artifactId>
+			<groupId>org.redisson</groupId>
+			<artifactId>redisson-spring-boot-starter</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
