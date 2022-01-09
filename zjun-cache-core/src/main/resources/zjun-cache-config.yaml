@@ -1,0 +1,7 @@
+defaultMap:
+  ttl: 30000
+  maxIdleTime: 720000
+  maxSize: 100
+  evictionPolicy: LFU
+  cacheProvider: CAFFEINE
+  multistage: true

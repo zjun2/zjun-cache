@@ -1,0 +1,18 @@
+spring:
+#  cache:
+#    type: caffeine
+#    caffeine:
+#      spec: maximumSize=500, expireAfterWrite=10s,refreshAfterWrite=5s
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+server:
+  port: 8081
+  
+logging:
+  level:
+    '[org.springframework]':
+      web: INFO
+      data: INFO
+    '[com.zjun]': DEBUG

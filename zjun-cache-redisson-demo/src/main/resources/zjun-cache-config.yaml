@@ -1,0 +1,13 @@
+demo:
+  ttl: 30000
+  maxIdleTime: 720000
+  maxSize: 100
+  mode: LFU
+  
+test:
+  ttl: 30000
+  maxIdleTime: 720000
+  maxSize: 10
+  evictionPolicy: LRU
+  cacheProvider: CAFFEINE
+  multistage: true
