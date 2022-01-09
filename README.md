@@ -5,7 +5,7 @@
 
 ==本文采用Spring boot cache + Caffenine + Redisson + redis 实现二级缓存，拆箱即可用。可做到零配置。==
 
-笔者一直想通过Caffenine + Redis 实现二级缓存，却在不经意期间发现Spring boot cache 能与Caffenine集成，于是便想将这三者集成在一起。于是研究了一晚上的源码，通过复制Spring boot cache开启拦截的方式，强行在spring boot cache拦截之后以相同的方式加了一层Redis缓存，但仍无法实现Caffenine的refreshAfterWrit配置，如要实现得做较大改造，且并不好用。refreshAfterWrit的好处是：如果刷新时间到了且缓存还没过期，便会返回旧值，开启新的线程去更新缓存。无奈之下只好到处查找相关文章。于是找到了这篇文章：[SpringBoot+SpringCache实现两级缓存(Redis+Caffeine) ](https://www.cnblogs.com/cnndevelop/p/13429660.html)。因为太过于复杂，所以只是瞟了一眼，但发现了作者在结尾写的扩展，可以通过redisson增加一级缓存，于是便有了这个想法：将Spring boot cache、Caffenine、 Redisson、redis一起集成。
+笔者一直想通过Caffenine + Redis 实现二级缓存，却在不经意期间发现Spring boot cache 能与Caffenine集成，于是便想将这三者集成在一起。于是研究了一晚上的源码，通过复制Spring boot cache开启拦截的方式，强行在spring boot cache拦截之后以相同的方式加了一层Redis缓存，但仍无法实现Caffenine的refreshAfterWrit配置，如要实现得做较大改造，且并不好用。refreshAfterWrit的好处是：如果刷新时间到了且缓存还没过期，便会返回旧值，开启新的线程去更新缓存。无奈之下只好到处查找相关文章。于是找到了这篇文章：[SpringBoot+SpringCache实现两级缓存(Redis+Caffeine) ](https://www.cnblogs.com/cnndevelop/p/13429660.html)。因为太过于复杂，所以只是瞟了一眼，但发现了作者在结尾写的扩展，可以通过redisson增加一级缓存，于是便有了这个想法：将Spring boot cache、Caffenine、 Redisson、redis一起集成。然而过程并不顺利，继续不断查找文献，通过该文献[Redisson和Spring Cache框架整合使用](http://www.voidcc.com/redisson/redisson-integration-with-spring-cache)发现我想要的所有功能都已经实现，RedissonClusteredSpringLocalCachedCacheManager与RedissonSpringClusteredLocalCachedCacheManager已经实现了我想要的功能。但很不幸的是[redisson.pro](https://redisson.pro/)为商业收费版，找不到相关资源。无赖之下害的自己实现。于是复制了他的类名RedissonClusteredSpringLocalCachedCacheManager（懒的取名字），自己写了个CacheManager。放弃了使用数据分片功能，原因也很简单-用不到。因为大多数发布生产环境会采购云服务，以阿里云Redis集群版来说，阿里云提供了代理连接，通过代理实现了数据分片功能，数据怎么路由怎么存储都由代理处理过了。当然也可以开通直连功能，这时候就需要配置Redis多个节点。多一事不如少一事，有代理连接干嘛非得找事呢。
 
 ## 1、多级缓存的好处是什么
     
@@ -57,7 +57,7 @@ LRU的优点和局限性 ：LRU可以很好的应对突发流量的情况，因�
 
 ### 3.2、 service 中使用
 
-    用法参照Spring boot cache。相关文献：https://www.jianshu.com/p/2dc8566dd0a3
+用法参照Spring boot cache。相关文献：[SpringBoot2.x—SpringCache使用](https://www.jianshu.com/p/2dc8566dd0a3)
 
 ```java
 @Slf4j
